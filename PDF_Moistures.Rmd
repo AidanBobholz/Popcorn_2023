@@ -1,0 +1,33 @@
+---
+title: "Popcorn Moisture"
+author: "Aidan Bobholz"
+date: "2024-02-15"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r, include=FALSE}
+library('tidyverse')
+```
+
+```{r, include=TRUE}
+
+ggplot(Moistures_csv_Copy, aes(x = Moisture, color = Date))+
+  facet_wrap(~Stack_No)+
+  geom_density()
+
+```
+
+```{r, include=TRUE}
+
+ggplot(Moisture_Equilibrium, aes(x = Moisture, color = Date))+
+  facet_wrap(~Stack_No)+
+  geom_density()
+
+```
+
