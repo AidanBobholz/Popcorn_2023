@@ -2,7 +2,7 @@
 title: "Popcorn Moisture"
 author: "Aidan Bobholz"
 date: "2024-02-15"
-output: html_document
+output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
@@ -27,6 +27,9 @@ ggplot(Moisture_4_S, aes(x = Moisture, color = Date))+
 
 ```
 
+**In this visual the numbers are in refrence to which stack the popcorn moistures were gathered from. Stacks 20 and 30 conatined Red kernerls, Stacks 0 and 40 contained Yellow kernels**
+
+
 ```{r, include=TRUE}
 
 ggplot(Moisture_2_S, aes(x = Moisture, color = Date))+
@@ -35,3 +38,4 @@ ggplot(Moisture_2_S, aes(x = Moisture, color = Date))+
 
 ```
 
+**In this visual this is when equilibration had occur. Salt water was introduced and the stacks of the kernels were combined, to have one stack of yellow and one stack of red. Stack 20 contained red and stack 30 contained yellow.**
