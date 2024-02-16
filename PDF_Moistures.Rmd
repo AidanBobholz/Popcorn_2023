@@ -16,26 +16,77 @@ library('tidyverse')
 library(readr)
 Moisture_2_S <- read_csv("Moisture_Equilibrium.csv")
 Moisture_4_S <- read_csv("Moistures_csv - Copy.csv")
+Moisture_4_S$Date <- as.Date(Moisture_4_S$Date, format="%m/%d/%Y")
+Moisture_2_S$Date <- as.Date(Moisture_2_S$Date, format="%m/%d/%Y")
 
 ```
 
 ```{r, include=TRUE}
 
-ggplot(Moisture_4_S, aes(x = Moisture, color = Date))+
-  facet_wrap(~Stack_No)+
+ggplot(Moisture_4_S, aes(x = Moisture, fill = Date, group = Date))+
+  facet_wrap(~Stack_No, scales = 'free_x')+
   geom_density()
 
 ```
+**Figure 1.** This figure is a density plot of the moisture values measured an different days. The label of each plot is in reference to the stack number. At this time the stacks were being dried with air flow. The air cam from outside and then was blown through the stacks which contained popcorn cobs and then the air was blown outside. 
+```{r, include=TRUE}
 
-**In this visual the numbers are in refrence to which stack the popcorn moistures were gathered from. Stacks 20 and 30 conatined Red kernerls, Stacks 0 and 40 contained Yellow kernels**
+ggplot(Moisture_4_S, aes(x = Moisture, fill = Date, group = Date))+
+  facet_wrap(~Color, scales = 'free_x')+
+  geom_density()
 
+```
+**Figure 2.** This figure is a density plot of the Red and Yellow popcorn moisture values combined from the different stacks. This is the same data as is in Figure 1.
+```{r, include=TRUE}
+
+ggplot(Moisture_2_S, aes(x = Moisture, fill = Date, group = Date))+
+  facet_wrap(~Color, scales = "free_x")+
+  geom_density()
+
+```
+**Figure 3.** This figure is a density plot of the moisture values gathered during salt water equilibration. During this time the Red and Yellow popcorn had been shelled and then combined into their own stacks. The stacks contained 3 salt water solutions spread out evenly in the stack to allow for the popcorn to equilibrate to the goal of 14.5% moisture.
 
 ```{r, include=TRUE}
 
-ggplot(Moisture_2_S, aes(x = Moisture, color = Date))+
-  facet_wrap(~Stack_No)+
-  geom_density()
+ggplot(Moisture_4_S, aes(x = Moisture, y = Date, group = Date, fill = Date))+
+ facet_wrap(~Stack_No, scales = 'free_x')+
+  geom_boxplot()
 
 ```
+**Figure 4.** This is a boxplot plot and helps show the avg moisture of the stacks. From this visual it is easy to see the moisture of the stacks drying down as this is when the popcorn was on the cob yet. Same data as Figure 1. The target moisture for this section was 15%.
 
-**In this visual this is when equilibration had occur. Salt water was introduced and the stacks of the kernels were combined, to have one stack of yellow and one stack of red. Stack 20 contained red and stack 30 contained yellow.**
+```{r, include=TRUE}
+
+ggplot(Moisture_4_S, aes(x = Moisture, y = Date, group = Date, fill = Date))+
+ facet_wrap(~Color, scales = 'free_x')+
+  geom_boxplot()
+
+```
+**Figure 5.** This plot is a box plot and is the Figure 4, version for the Figure 2, density plot.
+
+```{r, include=TRUE}
+
+ggplot(Moisture_2_S, aes(x = Moisture, y = Date, group = Date, fill = Date))+
+ facet_wrap(~Color, scales = 'free_x')+
+  geom_boxplot()
+
+```
+**Figure 6.** This a boxplot to relfect Figure 3.
+```{r, include=TRUE}
+
+ggplot(Moisture_4_S, aes(x = Moisture, y = Date, group = Date, fill = Date))+
+ facet_wrap(~Stack_No, scales = 'free_x')+
+  geom_violin()
+
+```
+**Figure 7.** These are called violin plots and are close to the same as a boxplot. I find this to be visually pleasing and tells a good amount about the data. Same data as is in Figure 1.
+```{r, include=TRUE}
+
+ggplot(Moisture_2_S, aes(x = Moisture, y = Date, group = Date, fill = Date))+
+ facet_wrap(~Color, scales = 'free_x')+
+  geom_violin()
+
+```
+**Figure 8.** Same as Figure 7, this is a violin plot of the data from Figure 3.
+
+
